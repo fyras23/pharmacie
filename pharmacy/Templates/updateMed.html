@@ -1,0 +1,243 @@
+{% include "navBar.html" %}
+{% load static %}
+
+ <section class="home">
+    <div class="text">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
+<head>
+<title>MODIFY MEDICAMENT</title>
+<!-- <link rel="stylesheet" href="{% static 'css/style11.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}"> -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, textarea, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 32px;
+      color: #fff;
+      z-index: 2;
+      }
+      h5 {
+      margin: 10px 0;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 20px 0 #095484; 
+      }
+      .banner {
+      position: relative;
+      height: 210px;
+      background-image: url("/uploads/media/default/0001/01/c43630149befa5c9559813f72e99bcb6bf149e62.jpeg");  
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.5); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder, a {
+      color: #095484;
+      }
+      .item input:hover, .item select:hover, .item textarea:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #095484;
+      color: #095484;
+      }
+      .item {
+      position: relative;
+      margin: 8px 0;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #a9a9a9;
+      }
+      .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=radio], input[type=checkbox]  {
+      display: none;
+      }
+      label.radio, label.check {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 15px 0;
+      cursor: pointer;
+      }
+
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 200px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px; 
+      background: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background: #0666a3;
+      }
+      @media (min-width: 568px) {
+      .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .city-item input {
+      width: calc(50% - 20px);
+      }
+      .city-item select {
+      width: calc(50% - 8px);
+      }
+      }
+    </style>
+ </head>
+ 
+<body>
+   
+ 
+<center>
+  <div class="banner">
+    <h1>MODIFY MEDICAMENT</h1>
+  </div>
+
+<form action="update_med_aplly/{{ med.id }}" method="post" id="myForm">
+{% csrf_token %}
+
+<div class="item" >
+<label>Name</label>
+<input name="name" value="{{ med.name }}" class="form-control"></td>
+</div>
+<div class="item">
+<label>price </label>
+<input type="number" name="price" value="{{ med.price  }}"class="form-control">
+</div>
+<div class="item">
+<label>quantity </label>
+<input type="number" name="quantity" value="{{ med.quantity }}"class="form-control">
+</div>
+<div class="item">
+<label>Expiration Date </label>
+<input type="date" name="expirationDate" required value="{{ med.expirationDate | date:'j/M/Y'}}" >
+<i class="fas fa-calendar-alt"></i>
+</div>
+
+
+<div class="item">
+    <label>Type </label>
+    <select name="type" class="item">
+    {% for c in type %}
+    {% if c.id == med.typee_id %}
+    <option value="{{ c.id }}" selected>{{c.Ntype}}</option>
+    {% else %}
+    <option value="{{ c.id }}">{{c.Ntype}}</option>
+    {% endif %}
+    {% endfor %}
+    </select>
+    </div>
+
+
+
+<!--  <div class="col-sm-4 col-md-6 col-lg-4">
+<label>Catégorie </label>
+<select name="categ" class="form-control form-control-lg">
+    
+    {% for c in type  %}
+    {% if c.id == med.typee_id %}
+<option value="{{c.id}}"><input  name="qtt" value="{{ c.Ntype }}" class="form-control"></option>
+    {% endif %}
+    {% endfor %}
+    
+</select>
+</div><div class="col-sm-4 col-md-6 col-lg-4">  -->
+  <div class="btn-block">
+    <button type="submit" >apply</button>
+  </div>
+</div>
+</form>
+<script>
+  const myForm = document.querySelector("#myForm");
+  myForm.addEventListener("submit", function(event) {
+    const inputs = document.querySelectorAll("form input, form select");
+    let isValid = true;
+    for (let i = 0; i < inputs.length; i++) {
+      const input = inputs[i];
+      if (!input.value) {
+        isValid = false;
+        break;
+      }
+    }
+    if (!isValid) {
+      alert("Please fill out all the fields before submitting the form.");
+      event.preventDefault();
+    }
+  });
+</script>
+
+</body>
+</center>
+</html>

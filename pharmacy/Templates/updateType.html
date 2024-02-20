@@ -1,0 +1,55 @@
+{% include "navBar.html" %}
+{% load static %}
+
+ <section class="home">
+    <div class="text">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
+<head>
+<title>MODIFY TYPE</title>
+<link rel="stylesheet" href="{% static 'css/style11.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+ </head>
+<body>
+   
+
+<center>
+<h1><center>MODIFY TYPE</center></h1>
+<form action="update_type_aplly/{{ type.id }}" method="post" id="myForm">
+{% csrf_token %}
+
+<div class="col-sm-4 col-md-6 col-lg-4" >
+<label>Type Name</label>
+<input name="Ntype" value="{{ type.Ntype }}" class="form-control"></td>
+</div>
+<div class="col-sm-4 col-md-6 col-lg-4">
+<label>description </label>
+<input  name="descri" value="{{ type.descri  }}"class="form-control">
+</div>
+
+
+
+<br><input type="submit" value="Aplly" class="btn btn-success">
+</div>
+</form>
+<script>
+    const myForm = document.querySelector("#myForm");
+    myForm.addEventListener("submit", function(event) {
+      const inputs = document.querySelectorAll("form input, form select");
+      let isValid = true;
+      for (let i = 0; i < inputs.length; i++) {
+        const input = inputs[i];
+        if (!input.value) {
+          isValid = false;
+          break;
+        }
+      }
+      if (!isValid) {
+        alert("Please fill out all the fields before submitting the form.");
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</center>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="{% static 'css/style11.css' %}">
+    
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    
+    <title>Pharmacy Dashboard</title> 
+</head>
+<body>
+    <style>
+        body.dark{
+    --body-color: #18191a;
+    --sidebar-color: #242526;
+    --primary-color: #000000;
+    --primary-color-light: #000000;
+    --toggle-color: #fff;
+    --text-color: rgb(255, 255, 255);
+}
+    </style>
+    
+
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                {% if request.user.is_authenticated %}
+                <span class="image">
+                    <a href="{% url 'medicaments' %}"> <img src="{% static 'img/ph.jpg'  %}" alt="" ></a>
+                </span>
+                {% endif %}
+                <div class="text logo-text">
+                    <span class="name">PHARMACY</span>
+                    <span class="profession">administration</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                   
+                   
+                </li>
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'medicaments' %}">
+                            <i class='bx bx-plus-medical icon'  ></i>
+                            <span class="text nav-text"> MEDICAMENT</span>
+                        </a>
+                        {% endif %}
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-link">
+                        <a href="{% url 'type' %}">
+                            <i class='
+                            bx bx-capsule icon'></i>
+                            <span class="text nav-text">MEDIC-TYPE</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_staff %}
+                    <li class="nav-link">
+                        
+                            <a href="{% url 'change_history' %}" >
+
+                            <i class='bx bx-show-alt icon' ></i>
+                            <span class="text nav-text">HISTORY</span>
+                        </a>
+                    </li>{% endif %}
+
+
+                    <li class="nav-link">
+                        {% if request.user.is_staff %}
+                        <a href="{% url 'users' %}">
+                            <i class='bx bx-user check' ></i>
+                            <span class="text nav-text">LOGED-IN</span>
+                        </a>
+                        {% endif %}
+                    </li>
+
+
+
+                    <li class="nav-link">
+                        {% if request.user.is_staff %}
+                        <a href="/admin">
+                            <i class='bx bx-data icon' ></i>
+                            <span class="text nav-text">ADMIN</span>
+                            {% endif %}
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            
+            <div class="bottom-content">
+                <li class="">
+                    <a href="{% url 'disconnect' %}">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                
+            </div>
+        </div>
+
+    </nav>
+    <script >const body = document.querySelector('body'),
+        sidebar = body.querySelector('nav'),
+        toggle = body.querySelector(".toggle"),
+        searchBtn = body.querySelector(".search-box"),
+        modeSwitch = body.querySelector(".toggle-switch"),
+        modeText = body.querySelector(".mode-text");
+  
+  
+  toggle.addEventListener("click" , () =>{
+      sidebar.classList.toggle("close");
+  })
+  
+  searchBtn.addEventListener("click" , () =>{
+      sidebar.classList.remove("close");
+  })
+  
+  modeSwitch.addEventListener("click" , () =>{
+      body.classList.toggle("dark");
+      
+      if(body.classList.contains("dark")){
+          modeText.innerText = "Light mode";
+      }else{
+          modeText.innerText = "Dark mode";
+          
+      }
+  });</script>
+
+    
+</body>
+</html>

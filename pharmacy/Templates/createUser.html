@@ -1,0 +1,86 @@
+{% include "navBar.html" %}
+{% load static %}
+    <section class="home">
+        <div class="text">
+            <html>
+<style>
+                    .btn{
+                
+                font-family: Roboto, sans-serif;
+                font-weight: 0;
+                font-size: 14px;
+                color: #fff;
+                background-color: #00ff33;
+                padding: 10px 30px;
+                border: 2px solid #00ff33;
+                box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+                border-radius: 50px;
+                transition : 1000ms;
+                transform: translateY(0);
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                cursor: pointer;
+                }
+                
+                .btn:hover{
+                
+                transition : 1000ms;
+                padding: 10px 50px;
+                transform : translateY(-0px);
+                background-color: #fff;
+                color: #00ff33;
+                border: solid 2px #00ff33;
+                }
+</style>
+
+<head>
+<title>Add new  employee</title>
+<link rel="stylesheet" href="{% static 'css/style11.css' %}">
+
+</head>
+<body>
+
+<h1><center>add new employee</center></h1>
+
+<center>
+<form action="add_user_action/" method="post" id="myForm">
+    
+{% csrf_token %}
+{{ user_form.as_div }}
+<div class="col-sm-4 col-md-6 col-lg-4">
+<br><button class="btn"  >ADD employee </button>
+</div>
+</link>
+</form>
+</center>
+<script type="text/javascript">
+    window.onload = function() {
+    document.getElementById("id_confirm").onchange = function() {
+    var pass1 = document.getElementById("id_password");
+    var pass2 = document.getElementById("id_confirm");
+    if (pass1!=pass2)
+    alert ("password is not identical")
+};
+};
+</script>
+<script>
+    const myForm = document.querySelector("#myForm");
+    myForm.addEventListener("submit", function(event) {
+      const inputs = document.querySelectorAll("form input, form select");
+      let isValid = true;
+      for (let i = 0; i < inputs.length; i++) {
+        const input = inputs[i];
+        if (!input.value) {
+          isValid = false;
+          break;
+        }
+      }
+      if (!isValid) {
+        alert("Please fill out all the fields before submitting the form.");
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>

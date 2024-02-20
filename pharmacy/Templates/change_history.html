@@ -1,0 +1,205 @@
+{% include "navBar.html" %}
+{% load static %}
+
+    <section class="home">
+        <div class="text">
+            <head>
+                <style>
+                    *{
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            body{
+                font-family: Helvetica;
+                -webkit-font-smoothing: antialiased;
+                background: rgb(139, 140, 140);
+            }
+            h2{
+                text-align: center;
+                font-size: 18px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: white;
+                padding: 30px 0;
+            }
+            
+            /* Table Styles */
+            
+            .table-wrapper{
+                margin: 10px 70px 70px;
+                box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+            }
+            
+            .fl-table {
+                border-radius: 8px;
+                font-size: 12px;
+                font-weight: normal;
+                border: none;
+                border-collapse: collapse;
+                width: 100%;
+                max-width: 100%;
+                white-space: nowrap;
+                          background-color: rgba(255, 189, 189, 0.344);
+            }
+            
+            .fl-table td, .fl-table th {
+                text-align: center;
+                padding: 18px;
+            }
+            
+            .fl-table td {
+                border-right: 1px solid #f8f8f8;
+                font-size: 12px;
+            }
+            
+            .fl-table thead th {
+                color: #ffffff;
+                background: #4FC3A1;
+            }
+            
+            
+            .fl-table thead th:nth-child(odd) {
+                color: #ffffff;
+                background: #324960;
+            }
+            
+            
+                    .fl-table tr:nth-child(even) {
+                      background: #ffa4a438;
+            }
+            
+            /* Responsive */
+            
+            @media (max-width: 767px) {
+                .fl-table {
+                    display: block;
+                    width: 100%;
+                }
+                .table-wrapper:before{
+                    content: "Scroll horizontally >";
+                    display: block;
+                    text-align: right;
+                    font-size: 11px;
+                    color: white;
+                    padding: 0 0 10px;
+                }
+                .fl-table thead, .fl-table tbody, .fl-table thead th {
+                    display: block;
+                }
+                .fl-table thead th:last-child{
+                    border-bottom: none;
+                }
+                .fl-table thead {
+                    float: left;
+                }
+                .fl-table tbody {
+                    width: auto;
+                    position: relative;
+                    overflow-x: auto;
+                }
+                .fl-table td, .fl-table th {
+                    padding: 20px .625em .625em .625em;
+                    height: 60px;
+                    vertical-align: middle;
+                    box-sizing: border-box;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    width: 120px;
+                    font-size: 13px;
+                    text-overflow: ellipsis;
+                }
+                .fl-table thead th {
+                    text-align: left;
+                    border-bottom: 1px solid #f7f7f9;
+                }
+                .fl-table tbody tr {
+                    display: table-cell;
+                }
+                .fl-table tbody tr:nth-child(odd) {
+                    background: none;
+                }
+                .fl-table tr:nth-child(even) {
+                    background: transparent;
+                }
+                .fl-table tr td:nth-child(odd) {
+                    background: #F8F8F8;
+                    border-right: 1px solid #E6E4E4;
+                }
+                .fl-table tr td:nth-child(even) {
+                    border-right: 1px solid #E6E4E4;
+                }
+                .fl-table tbody td {
+                    display: block;
+                    text-align: center;
+                }
+            }
+            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+                            
+                            .btn{
+                            
+                            font-family: Roboto, sans-serif;
+                            font-weight: 0;
+                            font-size: 14px;
+                            color: #fff;
+                            background-color: #0066CC;
+                            padding: 10px 30px;
+                            border: 2px solid #0066cc;
+                            box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+                            border-radius: 50px;
+                            transition : 1000ms;
+                            transform: translateY(0);
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            cursor: pointer;
+                            }
+                            
+                            .btn:hover{
+                            
+                            transition : 1000ms;
+                            padding: 10px 50px;
+                            transform : translateY(-0px);
+                            background-color: #fff;
+                            color: #0066cc;
+                            border: solid 2px #0066cc;
+                            }
+                            
+                </style>
+            </head>
+            <center> <h1>HISTORY TABLE</h1></center>
+          <table class="fl-table">
+            <tr>
+                <th>Object ID</th>
+                <th>type</th>
+                <th>Date</th>
+                <th>User</th>
+            </tr>
+            {% for obj_id, type,  date, user in changes %}
+                <tr>
+                    <td>
+                      {{ obj_id }}</td>
+                   <td>{% if type == "+" %}
+                    <p>Added</p>
+                    {% elif type == '-' %}
+                    <p>Deleted</p>
+                    {% else %}
+                    <p>Modifyed</p> 
+
+
+
+
+{% endif %}
+                   </td>
+                   <td>{{ date }}</td>
+
+
+                  </td>
+                    <td>{{ user }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+              
+  </div>
+
+ 
